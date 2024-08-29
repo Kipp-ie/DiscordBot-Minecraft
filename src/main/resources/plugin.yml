@@ -1,4 +1,4 @@
 name: DiscordBot-Minecraft
 version: '1.0-SNAPSHOT'
-main: kippie.me.DiscordBotMinecraft.Main
+main: kippie.me.discordbotminecraft.Main
 api-version: '1.21'
