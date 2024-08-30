@@ -5,8 +5,7 @@ import net.dv8tion.jda.api.JDA;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-
-import javax.security.auth.login.LoginException;
+import java.util.Objects;
 
 
 public class onMinecraftChat implements Listener {
@@ -16,11 +15,11 @@ public class onMinecraftChat implements Listener {
     }
 
     @EventHandler
-    public void onMessage(AsyncPlayerChatEvent event) throws LoginException, InterruptedException {
+    public void onMessage(AsyncPlayerChatEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle(event.getPlayer().getDisplayName());
         embed.setDescription(event.getMessage());
-        jda.getTextChannelById("1276589604765700218").sendMessageEmbeds(embed.build()).queue();
+        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).sendMessageEmbeds(embed.build()).queue();
     }
 
 

@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import java.util.Objects;
+
 public class onMinecraftJoin implements Listener {
     private final JDA jda;
     public onMinecraftJoin(JDA jda) {
@@ -18,7 +20,7 @@ public class onMinecraftJoin implements Listener {
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle(event.getPlayer().getName() + " has joined the server");
 
-        jda.getTextChannelById("1276589604765700218").sendMessageEmbeds(embed.build()).queue();
+        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).sendMessageEmbeds(embed.build()).queue();
 
         if (Bukkit.getOnlinePlayers().isEmpty()) {
             jda.getPresence().setActivity(Activity.playing("TestMC"));

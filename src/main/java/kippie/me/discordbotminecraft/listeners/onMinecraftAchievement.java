@@ -2,11 +2,10 @@ package kippie.me.discordbotminecraft.listeners;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import java.util.Objects;
 
 public class onMinecraftAchievement implements Listener {
     private final JDA jda;
@@ -19,6 +18,6 @@ public class onMinecraftAchievement implements Listener {
         embed.setTitle(event.getPlayer().getName() + " has gotten an achievement!");
         embed.setDescription(event.getAdvancement().getKey().getKey());
 
-        jda.getTextChannelById("1276589604765700218").sendMessageEmbeds(embed.build()).queue();
+        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).sendMessageEmbeds(embed.build()).queue();
     }
 }

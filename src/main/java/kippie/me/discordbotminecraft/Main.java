@@ -11,10 +11,10 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public final class Main extends JavaPlugin {
     private JDA jda;
@@ -42,7 +42,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         jda = buildJDA();
-        jda.getTextChannelById("1276589604765700218").getManager().setTopic(Emoji.fromUnicode("U+1F7E2").getFormatted() + " | " + Bukkit.getOnlinePlayers().size() + " player(s) online").queue();
+        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).getManager().setTopic(Emoji.fromUnicode("U+1F7E2").getFormatted() + " | " + Bukkit.getOnlinePlayers().size() + " player(s) online").queue();
         Bukkit.getPluginManager().registerEvents(new onMinecraftChat(jda), this);
         Bukkit.getPluginManager().registerEvents(new onMinecraftDeath(jda), this);
         Bukkit.getPluginManager().registerEvents(new onMinecraftJoin(jda), this);
@@ -54,7 +54,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void  onDisable() {
-        jda.getTextChannelById("1276589604765700218").getManager().setTopic(Emoji.fromUnicode("U+1F7E2").getFormatted() + " | Server is offline").queue();
+        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).getManager().setTopic(Emoji.fromUnicode("U+1F7E2").getFormatted() + " | Server is offline").queue();
         jda.shutdown();
         try {
             if (!jda.awaitShutdown(Duration.ofSeconds(10))) {
