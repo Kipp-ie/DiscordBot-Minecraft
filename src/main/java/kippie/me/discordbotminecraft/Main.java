@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.Duration;
@@ -40,6 +41,9 @@ public final class Main extends JavaPlugin {
         jda = buildJDA();
         Bukkit.getPluginManager().registerEvents(new onMinecraftChat(jda), this);
         Bukkit.getPluginManager().registerEvents(new onMinecraftDeath(jda), this);
+        Bukkit.getPluginManager().registerEvents(new onMinecraftJoin(jda), this);
+        Bukkit.getPluginManager().registerEvents(new onMinecraftLeave(jda), this);
+        Bukkit.getPluginManager().registerEvents(new onMinecraftAchievement(jda), this);
         // Plugin startup logic
 
     }
