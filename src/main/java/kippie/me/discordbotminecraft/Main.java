@@ -1,7 +1,8 @@
 package kippie.me.discordbotminecraft;
 
-import kippie.me.discordbotminecraft.listeners.onDiscordChat;
-import kippie.me.discordbotminecraft.listeners.onMinecraftChat;
+import kippie.me.discordbotminecraft.commands.Status;
+import kippie.me.discordbotminecraft.listeners.*;
+import kippie.me.discordbotminecraft.managers.slashCommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -16,14 +17,20 @@ public final class Main extends JavaPlugin {
     private JDA jda;
 
     private JDA buildJDA() {
-        JDABuilder builder = JDABuilder.createDefault("");
+        JDABuilder builder = JDABuilder.createDefault("MTI3ODcxMzMyNjA5NjA5MzI0Ng.GPg_ii.96hI6f4FLMolIhWXDXafrgkRmPOjZlpn039QO4");
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.setActivity(Activity.watching("Hi :)"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT);
         builder.addEventListeners(
-                new onDiscordChat()
+
+                new slashCommandManager(),
+
+                new onDiscordChat(),
+                new onDiscordJoin(),
+                new onDiscordLeave(),
+
+                new Status()
         );
-        builder.build();
         return builder.build();
     }
 
@@ -32,6 +39,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         jda = buildJDA();
         Bukkit.getPluginManager().registerEvents(new onMinecraftChat(jda), this);
+        Bukkit.getPluginManager().registerEvents(new onMinecraftDeath(jda), this);
         // Plugin startup logic
 
     }
