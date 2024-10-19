@@ -23,7 +23,7 @@ public final class Main extends JavaPlugin {
     private JDA buildJDA() {
         JDABuilder builder = JDABuilder.createDefault(getConfig().getString("Token"));
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
-        builder.setActivity(Activity.playing("TestMC"));
+        builder.setActivity(Activity.playing("Minecraft"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT);
         builder.addEventListeners(
 
