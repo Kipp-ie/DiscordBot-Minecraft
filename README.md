@@ -14,7 +14,7 @@ Shares events between Minecraft and Discord.
 
 ## Running on your own server.
 
-Just install the plugin! Use config.yml to put in a token and enable/disable features.
+Just install the plugin! Use config.yml to put in a token and enable/disable features
 
 ## Disclaimers
 Not every feature is "bug-free" like the player counting is not 100% working.
