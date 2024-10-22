@@ -25,7 +25,7 @@ jobs:
     - name: Set up GitHub Packages
       run: |
         echo "//maven.pkg.github.com/${{ github.repository }}" > ~/.m2/settings.xml
-        echo "<settings><servers><server><id>github</id><username>${{ github.actor }}</username><password>${{ secrets.GITHUB_TOKEN }}</password></server></servers></settings>" >> ~/.m2/settings.xml
+        echo "<settings><servers><server><id>github</id><username>${{ github.actor }}</username><password>${{ secrets.TOKEN }}</password></server></servers></settings>" >> ~/.m2/settings.xml
         
     - name: Publish to GitHub Packages
       run: mvn deploy
