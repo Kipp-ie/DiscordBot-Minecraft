@@ -1,6 +1,6 @@
 # Discord <-> Minecraft
 
-Shares events between Minecraft and Discord
+Shares events between Minecraft and Discord.
 
 ## Events:
 - Discord Server Join/leave
