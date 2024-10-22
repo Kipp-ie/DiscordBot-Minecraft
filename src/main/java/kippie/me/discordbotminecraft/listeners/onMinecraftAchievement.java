@@ -17,10 +17,12 @@ public class onMinecraftAchievement implements Listener {
     }
     @EventHandler
     public void onPlayerAchievement(PlayerAdvancementDoneEvent event) {
-        EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle(event.getPlayer().getName() + " has gotten an achievement!");
-        embed.setDescription(event.getAdvancement().getKey().getKey());
+        if(!event.getAdvancement().getKey().getKey().contains("recipes")) {
+            EmbedBuilder embed = new EmbedBuilder();
+            embed.setTitle(event.getPlayer().getName() + " has gotten an achievement!");
+            embed.setDescription(Objects.requireNonNull(event.getAdvancement().getDisplay()).getTitle());
+            Objects.requireNonNull(jda.getTextChannelById(Objects.requireNonNull(config.getString("chatID")))).sendMessageEmbeds(embed.build()).queue();
+        }
 
-        Objects.requireNonNull(jda.getTextChannelById(Objects.requireNonNull(config.getString("chatID")))).sendMessageEmbeds(embed.build()).queue();
     }
 }
