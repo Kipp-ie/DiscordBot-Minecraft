@@ -9,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class onMinecraftLeave implements Listener {
@@ -21,12 +23,16 @@ public class onMinecraftLeave implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle(event.getPlayer().getName() + " has left the server");
+        embed.setDescription(event.getQuitMessage());
+        embed.setAuthor(event.getPlayer().getDisplayName()).setImage("https://mc-heads.net/avatar/" + event.getPlayer().getUniqueId() + "/avatar.png");
+        embed.setColor(Color.RED);
+        embed.setFooter("Event happened in " + Bukkit.getName() );
+        embed.setTimestamp(LocalDateTime.now());
 
-        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).sendMessageEmbeds(embed.build()).queue();
-        Objects.requireNonNull(jda.getTextChannelById("1276589604765700218")).getManager().setTopic(Bukkit.getOnlinePlayers().size() + " player(s) online").queue();
+        Objects.requireNonNull(jda.getTextChannelById(config.getInt("ChatID"))).sendMessageEmbeds(embed.build()).queue();
+        Objects.requireNonNull(jda.getTextChannelById(config.getInt("ChatID"))).getManager().setTopic(Bukkit.getOnlinePlayers().size() + " player(s) online").queue();
         if (Bukkit.getOnlinePlayers().isEmpty()) {
-            jda.getPresence().setActivity(Activity.playing("TestMC"));
+            jda.getPresence().setActivity(Activity.playing(Bukkit.getName()));
 
         } else {
             jda.getPresence().setActivity(Activity.watching(Bukkit.getOnlinePlayers().size() + " player(s) online!"));

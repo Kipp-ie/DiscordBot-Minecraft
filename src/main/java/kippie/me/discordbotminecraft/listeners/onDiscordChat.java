@@ -2,6 +2,8 @@ package kippie.me.discordbotminecraft.listeners;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +19,12 @@ public class onDiscordChat extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
             if (!event.getAuthor().isBot()) {
                 if (!event.getAuthor().isSystem()) {
-                    Bukkit.broadcastMessage("DISCORD - @" + Objects.requireNonNull(event.getMember()).getUser().getName() + " | " + event.getMessage().getContentRaw());
+                    if (event.getChannel().equals(event.getJDA().getTextChannelById(config.getInt("chatID")))) {
+                        var mm = MiniMessage.miniMessage();
+                        Component parsed = mm.deserialize("<bold><blue>Discord</bold></blue> - ");
+                        Bukkit.broadcastMessage(parsed + event.getMessage().getContentDisplay());
+                    }
+
                 }
 
             }

@@ -69,6 +69,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>net.kyori</groupId>
+            <artifactId>adventure-text-minimessage</artifactId>
+            <version>4.17.0</version>
+        </dependency>
+        <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>5.0.2</version> <!-- replace $version with the latest version -->
