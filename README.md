@@ -1,3 +1,5 @@
+# Repo has been archived, we moved everything to [Nebula](https://github.com/Kipp-ie/Nebula)! 
+
 # Discord <-> Minecraft
 
 Shares events between Minecraft and Discord.
